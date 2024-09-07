@@ -9,6 +9,8 @@
  * Change the array nums such that the first k elements of nums contain the unique elements in the order they were present in nums initially. The remaining elements of nums are not important as well as the size of nums.
  * Return k.
 """
+from typing import List
+
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         # Edge case: if the list is empty, return 0
