@@ -11,4 +11,21 @@
 """
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        pass
+        # Edge case: if the list is empty, return 0
+        if not nums:
+            return 0
+        
+        # Initialize the index for the position of unique elements
+        k = 1
+        
+        # Iterate over the array starting from the second element
+        for i in range(1, len(nums)):
+            # If the current element is different from the previous one
+            if nums[i] != nums[i - 1]:
+                # Place the unique element in the correct position
+                nums[k] = nums[i]
+                # Move the index for unique elements
+                k += 1
+        
+        # Return the number of unique elements
+        return k
