@@ -1,4 +1,4 @@
-/***
+"""
  * 26. Remove Duplicates from Sorted Array
  * Author: D3lta0ne
  * Published: 9/7/24
@@ -8,25 +8,7 @@
  * Consider the number of unique elements of nums to be k, to get accepted, you need to do the following things:
  * Change the array nums such that the first k elements of nums contain the unique elements in the order they were present in nums initially. The remaining elements of nums are not important as well as the size of nums.
  * Return k.
-*/
-
-int removeDuplicates(int *nums, int numsSize)
-{
-
-    // always validate inputs
-    if (numsSize == 0 || !nums)
-    {
-        return 0;
-    }
-
-    int k = 1;
-    for (int i = 1; i < numsSize; i++)
-    {
-        if (nums[i] != nums[i - 1])
-        {
-            nums[k] = nums[i];
-            k++;
-        }
-    }
-    return k;
-}
+"""
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        pass
