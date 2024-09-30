@@ -12,16 +12,14 @@
 
 int removeElement(int *nums, int numsSize, int val)
 {
-    int j = 0;
-    for (int i = 0; i < numsSize - j; i++)
+    int j = 0; // j will track the position of the next element that isn't val
+    for (int i = 0; i < numsSize; i++)
     {
-        if (nums[i] == val)
+        if (nums[i] != val)
         {
-            nums[i] = nums[i] ^ nums[i - 1 - j];
-            nums[i - 1 - j] = nums[i] ^ nums[i - 1 - j];
-            nums[i] = nums[i] ^ nums[i - 1 - j];
+            nums[j] = nums[i]; // Move the non-val element to the front
             j++;
         }
     }
-    return numsSize - j;
+    return j; // j is the count of elements that are not equal to val
 }
