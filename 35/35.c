@@ -11,27 +11,27 @@
 
 int searchInsert(int *nums, int numsSize, int target)
 {
-    if (!nums || numsSize == 0)
-    {
-        return 0;
-    }
-
     int i = 0;
     int j = numsSize - 1;
+
     while (i <= j)
     {
-        if (target == nums[i])
+        int mid = i + (j - i) / 2; // Calculate the midpoint
+
+        if (nums[mid] == target)
         {
-            return i;
+            return mid; // Target found, return its index
         }
-        else if (target < nums[i / 2])
+        else if (nums[mid] < target)
         {
-            j = (j / 2) + 1;
+            i = mid + 1; // Narrow search to the right half
         }
         else
         {
-            i = (j / 2) + 1;
+            j = mid - 1; // Narrow search to the left half
         }
     }
+
+    // If target is not found, i is the insertion point
     return i;
 }
