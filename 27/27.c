@@ -12,4 +12,16 @@
 
 int removeElement(int *nums, int numsSize, int val)
 {
+    int j = 0;
+    for (int i = 0; i < numsSize - j; i++)
+    {
+        if (nums[i] == val)
+        {
+            nums[i] = nums[i] ^ nums[i - 1 - j];
+            nums[i - 1 - j] = nums[i] ^ nums[i - 1 - j];
+            nums[i] = nums[i] ^ nums[i - 1 - j];
+            j++;
+        }
+    }
+    return numsSize - j;
 }
