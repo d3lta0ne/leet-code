@@ -8,3 +8,6 @@
  *  You may assume that each input would have exactly one solution, and you may not use the same element twice.
  *  You can return the answer in any order.
  */
+int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
+    
+}
