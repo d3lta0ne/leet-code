@@ -2,7 +2,7 @@
 class Solution
 {
 public:
-    bool isAnagram(string s, string t)
+    bool isAnagram(std::string s, std::string t)
     {
         if (s.size() != t.size())
         {
