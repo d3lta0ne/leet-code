@@ -1,32 +1,24 @@
 #include <vector>
 
-using namespace std;
-
 class Solution
 {
 public:
-    void swap(int *x, int *y)
+    void moveZeroes(std::vector<int> &nums)
     {
-        *y = *x ^ *y;
-        *x = *x ^ *y;
-        *y = *x ^ *y;
-    }
-
-    void moveZeroes(vector<int> &nums)
-    {
-        if (nums.size() <= 1)
-            return;
-
-        int i;
-
-        for (i = 1; i < nums.size(); i++)
+        int r, w;
+        r = 0;
+        w = 0;
+        for (r = 0; r < nums.size(); r++)
         {
-            if (nums.at(i) != 0 && nums.at(i - 1) == 0)
+            if (nums[r] != 0)
             {
-                swap(&nums[i], &nums[i - 1]);
+                nums[w++] = nums[r];
             }
         }
 
-        return;
+        while (w < nums.size())
+        {
+            nums[w++] = 0;
+        }
     }
 };
