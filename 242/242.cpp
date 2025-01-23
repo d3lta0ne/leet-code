@@ -1,24 +1,27 @@
+#include <string>
 class Solution
 {
 public:
     bool isAnagram(string s, string t)
     {
-        // Step 1: Check if the strings have the same length
         if (s.size() != t.size())
         {
             return false;
         }
 
-        char ch = 0;
-
-        // Step 2: XOR all characters of both strings
-        for (int i = 0; i < s.size(); i++)
+        int counter[26]{};
+        for (int i = 0; i < s.length(); i++)
         {
-            ch ^= s[i]; // XOR character from string s
-            ch ^= t[i]; // XOR character from string t
+            counter[s.at(i) - 'a']++;
+            counter[t.at(i) - 'a']--;
         }
-
-        // Step 3: If the result is 0, the strings are anagrams
-        return ch == 0;
+        for (int count : counter)
+        {
+            if (count != 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 };
