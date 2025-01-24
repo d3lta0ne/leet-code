@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 bool judgeCircle(char *moves)
 {
     int x, y, i;
