@@ -1,5 +1,9 @@
 #define SIZE 3
 
+#include <string>
+#include <vector>
+using namespace std;
+
 class Solution
 {
 public:
