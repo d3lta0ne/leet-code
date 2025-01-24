@@ -1,13 +1,29 @@
-#include <string>
+
 class Solution
 {
+#define SIZE 26
 public:
-    std::string toLowerCase(std::string s)
+    string toLowerCase(string s)
     {
-        for (int i = 0; i < s.size(); ++i)
+        map<char, char> alpha;
+        string AZ = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        string az = "abcdefghijklmnopqrstuvwxyz";
+
+        int i;
+        for (i = 0; i < SIZE; i++)
         {
-            s[i] = tolower(s[i]);
+            alpha.insert(pair<char, char>(AZ[i], az[i]));
         }
-        return s;
+
+        // Convert each character in the string to lowercase if it's an uppercase letter
+        for (int i = 0; i < s.size(); i++)
+        {
+            if (alpha.count(s[i]))
+            {
+                s[i] = alpha.at(s[i]);
+            }
+        }
+
+        return s; // Return the modified string
     }
 };
