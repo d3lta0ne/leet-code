@@ -1,7 +1,12 @@
+#include <string>
+#include <map>
+
+using namespace std;
 
 class Solution
 {
 #define SIZE 26
+
 public:
     string toLowerCase(string s)
     {
