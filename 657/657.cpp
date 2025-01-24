@@ -6,37 +6,34 @@ class Solution
 public:
     bool judgeCircle(string moves)
     {
-        int chk[2]{};
-        for (char x : moves)
+        int x, y, i;
+
+        i = 0;
+
+        x = 0;
+        y = 0;
+
+        while (moves[i])
         {
-            if (x == 'R')
+            if (moves[i] == 'U')
             {
-                chk[0]++;
+                y++;
             }
-            else if (x == 'L')
+            else if (moves[i] == 'D')
             {
-                chk[0]--;
+                y--;
             }
-            else if (x == 'U')
+            else if (moves[i] == 'L')
             {
-                chk[1]++;
+                x--;
             }
-            else if (x == 'D')
+            else if (moves[i] == 'R')
             {
-                chk[1]--;
+                x++;
             }
-            else
-            {
-                continue;
-            }
+            i++;
         }
 
-        for (int ck : chk)
-        {
-            if (ck != 0)
-                return false;
-        }
-
-        return true;
+        return x == 0 && y == 0;
     }
 };
