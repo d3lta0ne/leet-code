@@ -1,14 +1,9 @@
-#include <vector>
-#include <string>
-
-using namespace std;
-
 class Solution
 {
 public:
     int calc(vector<string> &op)
     {
-        vector<int> score;
+        stack<int> score;
         int i = 0;
 
         while (i < op.size())
@@ -18,7 +13,7 @@ public:
                 // Invalidate the previous score by popping
                 if (!score.empty())
                 {
-                    score.pop_back();
+                    score.pop();
                 }
             }
             else if (op[i] == "D")
@@ -26,7 +21,7 @@ public:
                 // Double the previous score
                 if (!score.empty())
                 {
-                    score.push_back(score.back() * 2);
+                    score.push(score.top() * 2);
                 }
             }
             else if (op[i] == "+")
@@ -34,24 +29,27 @@ public:
                 // Add the sum of the last two scores
                 if (score.size() >= 2)
                 {
-                    score.push_back(score[score.size() - 1] + score[score.size() - 2]);
+                    auto first = score.top();
+                    score.pop();
+                    auto second = first + score.top();
+                    score.push(first);
+                    score.push(second);
                 }
             }
             else
             {
                 // Add a new score (convert the string to integer)
-                score.push_back(stoi(op[i]));
+                score.push(stoi(op[i]));
             }
-
-            // Increment index to process the next operation
             i++;
         }
 
         // Return the sum of all the scores
         int total = 0;
-        for (int sc : score)
+        while (!score.empty())
         {
-            total += sc;
+            total += score.top();
+            score.pop();
         }
 
         return total;
