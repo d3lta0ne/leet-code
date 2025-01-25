@@ -1,11 +1,9 @@
 #include <vector>
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    vector<int> spiralOrder(vector<vector<int>> &matrix)
-    {
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
         const int VISITED = 101;
         int rows = matrix.size(), columns = matrix[0].size();
         // Four directions that we will move: right, down, left, up.
@@ -20,15 +18,13 @@ public:
         // Store the first element and mark it as visited.
         vector<int> result = {matrix[0][0]};
         matrix[0][0] = VISITED;
-        while (changeDirection < 2)
-        {
+        while (changeDirection < 2) {
             while (0 <= x + directions[currentDirection][0] &&
                    x + directions[currentDirection][0] < rows &&
                    0 <= y + directions[currentDirection][1] &&
                    y + directions[currentDirection][1] < columns &&
                    matrix[x + directions[currentDirection][0]]
-                         [y + directions[currentDirection][1]] != VISITED)
-            {
+                         [y + directions[currentDirection][1]] != VISITED) {
                 // Reset this to 0 since we did not break and change the
                 // direction.
                 changeDirection = 0;
