@@ -16,27 +16,27 @@ public:
         int changeDirection = 0;
         // Current place that we are at is (row, col).
         // row is the row index; col is the column index.
-        int row = 0, col = 0;
+        int x = 0, y = 0;
         // Store the first element and mark it as visited.
         vector<int> result = {matrix[0][0]};
         matrix[0][0] = VISITED;
         while (changeDirection < 2)
         {
-            while (0 <= row + directions[currentDirection][0] &&
-                   row + directions[currentDirection][0] < rows &&
-                   0 <= col + directions[currentDirection][1] &&
-                   col + directions[currentDirection][1] < columns &&
-                   matrix[row + directions[currentDirection][0]]
-                         [col + directions[currentDirection][1]] != VISITED)
+            while (0 <= x + directions[currentDirection][0] &&
+                   x + directions[currentDirection][0] < rows &&
+                   0 <= y + directions[currentDirection][1] &&
+                   y + directions[currentDirection][1] < columns &&
+                   matrix[x + directions[currentDirection][0]]
+                         [y + directions[currentDirection][1]] != VISITED)
             {
                 // Reset this to 0 since we did not break and change the
                 // direction.
                 changeDirection = 0;
                 // Calculate the next place that we will move to.
-                row += directions[currentDirection][0];
-                col += directions[currentDirection][1];
-                result.push_back(matrix[row][col]);
-                matrix[row][col] = VISITED;
+                x += directions[currentDirection][0];
+                y += directions[currentDirection][1];
+                result.push_back(matrix[x][y]);
+                matrix[x][y] = VISITED;
             }
             // Change our direction.
             currentDirection = (currentDirection + 1) % 4;
