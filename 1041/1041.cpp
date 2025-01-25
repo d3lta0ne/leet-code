@@ -12,7 +12,7 @@ public:
         int direction = 0;
         pair<int, int> movement[] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // Correct the initialization here
 
-        int loop = 2;
+        int loop = 4;
         while (loop)
         {
             for (char instruction : instructions)
