@@ -1,58 +1,44 @@
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
-int *spiralOrder(int **matrix, int matrixSize, int *matrixColSize, int *returnSize)
-{
-    // Allocate memory for result array
-    int m = matrixSize;
-    int n = *matrixColSize;
-    int *result = (int *)malloc(m * n * sizeof(int));
+int* spiralOrder(int** matrix, int matrixSize, int* matrixColSize, int* returnSize) {
+    int n = matrixSize;
+    int m = *matrixColSize;
+    
+    int min = 0;
+    if ( m >= n ) {
+        min = n;
+    } 
+    else { min = m; }
 
-    int topBorder = 0;
-    int leftBorder = 0;
-    int rightBorder = n - 1;
-    int bottomBorder = m - 1;
+    int phase = 0;
+    *returnSize = m * n;
 
+    int* result = (int*)malloc(matrixSize * (*matrixColSize) * sizeof(int));
     int idx = 0;
-
-    // Traverse the matrix in spiral order
-    while (topBorder <= bottomBorder && leftBorder <= rightBorder)
-    {
-        // Traverse from left to right along the top row
-        for (int y = leftBorder; y <= rightBorder; y++)
-        {
-            result[idx++] = matrix[topBorder][y];
+    while (phase < (min + 1) / 2) {
+        for (int i = phase; i < m - phase; i++) {
+            result[idx] = matrix[phase][i];
+            idx++;
         }
-        topBorder++;
-
-        // Traverse from top to bottom along the right column
-        for (int x = topBorder; x <= bottomBorder; x++)
-        {
-            result[idx++] = matrix[x][rightBorder];
+        for (int i = phase + 1; i < n - phase; i++) {
+            result[idx] = matrix[i][m - 1 - phase];
+            idx++;
         }
-        rightBorder--;
-
-        if (topBorder <= bottomBorder)
-        {
-            // Traverse from right to left along the bottom row
-            for (int y = rightBorder; y >= leftBorder; y--)
-            {
-                result[idx++] = matrix[bottomBorder][y];
+        if (n - 1 - phase > phase) {
+            for (int i = m - 2 - phase; i > phase - 1; i--) {
+                result[idx] = matrix[n - 1 - phase][i];
+                idx++;
             }
-            bottomBorder--;
         }
-
-        if (leftBorder <= rightBorder)
-        {
-            // Traverse from bottom to top along the left column
-            for (int x = bottomBorder; x >= topBorder; x--)
-            {
-                result[idx++] = matrix[x][leftBorder];
+        if (m - 1 - phase > phase) {
+            for (int i = n - 2 - phase; i > phase; i--) {
+                result[idx] = matrix[i][phase];
+                idx++;
             }
-            leftBorder++;
         }
+        phase = phase + 1;
     }
 
-    *returnSize = m * n; // Total number of elements
     return result;
 }
