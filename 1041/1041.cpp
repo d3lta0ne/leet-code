@@ -7,30 +7,29 @@ class Solution
 public:
     bool isRobotBounded(string instructions)
     {
-        int x = 0;
-        int y = 0;
-        int direction = 0;
-        pair<int, int> movement[] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // Correct the initialization here
+        int directions[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-        int loop = 4;
-        while (loop)
+        // Initial position is in the center
+        int x = 0, y = 0;
+        // facing north
+        int idx = 0;
+
+        for (char i : instructions)
         {
-            for (char instruction : instructions)
+            if (i == 'L')
+                idx = (idx + 3) % 4;
+            else if (i == 'R')
+                idx = (idx + 1) % 4;
+            else
             {
-                if (instruction == 'R')
-                    direction = abs(++direction % 4); // Right turn
-                else if (instruction == 'L')
-                    direction = abs((--direction + 4) % 4); // Left turn (avoid negative direction)
-                else if (instruction == 'G')
-                {
-                    x += movement[direction].first;
-                    y += movement[direction].second;
-                }
-                cout << "Instruction: " << instruction << ", Position: (" << x << ", " << y << "), Direction: " << direction << endl;
+                x += directions[idx][0];
+                y += directions[idx][1];
             }
-            loop--;
         }
 
-        return x == 0 && y == 0;
+        // after one cycle:
+
+        /*It's a limit cycle trajectory if the robot is back to the center: x = y = 0 or if the robot doesn't face north: idx != 0*/
+        return (x == 0 && y == 0) || (idx != 0);
     }
 };
