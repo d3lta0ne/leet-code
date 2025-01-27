@@ -9,7 +9,7 @@ class Solution {
             int square;
             if (Math.abs(nums[left]) < Math.abs(nums[right])) {
                 square = nums[right];
-                right--;
+                right--;    
             } else {
                 square = nums[left];
                 left++;
